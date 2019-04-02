@@ -1,0 +1,32 @@
+###################################################################################################################################
+#													MONGODB AITOR's TOOL						                                  #
+###################################################################################################################################
+
+To export the whole data for the target page (the graph):
+> mongoexport -d fireweb -c events -q '{url:"http://www.when2go-study.co.uk/show_tree"}' --jsonArray --out exportedEventArray.json
+
+This script converts the json file into csv:
+> in2csv exportedEventArray.json > exportedEventArray.csv
+
+
+Every time you restart, open command line:
+> cd ucivit
+> npm start
+
+To check that UCIVIT is running, just go to:
+http://130.88.198.81:2727/ucivit/ucivitTime
+It should respond with the server time in ms, in the following format
+{"serverTime":"1531498299252"}
+
+To delete the data collected, you need to access "mongo" first, then "use fireweb":
+> db.events.remove({})
+and then to make sure it is '0'
+> db.events.find().count() 
+
+To restart Julio server, from the command line, from the directory \fireweb:
+> ./restart.sh
+
+To replace the whole files into Julio server system just write (from dir \Desktop):
+
+> ~/Desktop$ sudo bash ~/Desktop/copy_new_fireweb.sh
+ 
